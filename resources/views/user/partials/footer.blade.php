@@ -117,6 +117,128 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
 <!-- End Messenger Chat plugin Code -->
 
 
+{{-- ===== DARK LUXURY FOOTER STYLES ===== --}}
+<style>
+/* ---- Footer Wave ---- */
+.footer-wave-wrap {
+    display: block;
+    line-height: 0;
+    margin-bottom: -2px;
+    background: var(--dlux-surface, #0e0b05);
+}
+.footer-wave-wrap svg { display: block; width: 100%; }
+
+/* ---- Footer Widget Title ---- */
+.footer__widget--title {
+    border-bottom: 1px solid rgba(201,168,76,0.2) !important;
+    padding-bottom: 10px !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer__widget--title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--dlux-gold, #c9a84c);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(201,168,76,0.5);
+}
+
+/* ---- Social Icons Hover ---- */
+.social__shear--list__icon {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease !important;
+    display: inline-block !important;
+}
+.social__shear--list__icon:hover {
+    transform: scale(1.28) rotate(-5deg) !important;
+    filter: drop-shadow(0 0 10px rgba(201,168,76,0.7)) brightness(1.2) !important;
+}
+
+/* ---- Contact FA icons ---- */
+.footer__widget--menu__list a .fa-brands,
+.footer__widget--menu__list a .fa-solid {
+    transition: color 0.3s ease, transform 0.3s ease !important;
+}
+.footer__widget--menu__list a:hover .fa-brands,
+.footer__widget--menu__list a:hover .fa-solid {
+    color: var(--dlux-gold, #c9a84c) !important;
+    transform: scale(1.2) !important;
+}
+
+/* ---- Footer Scroll Reveal ---- */
+.footer__widget {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.footer__widget.footer-visible { opacity: 1; transform: translateY(0); }
+.footer__widget:nth-child(1) { transition-delay: 0.05s; }
+.footer__widget:nth-child(2) { transition-delay: 0.15s; }
+.footer__widget:nth-child(3) { transition-delay: 0.25s; }
+.footer__widget:nth-child(4) { transition-delay: 0.35s; }
+
+/* ---- Back To Top Button ---- */
+#lux-back-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, #9a7a0a, #c9a84c);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.45);
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+#lux-back-top.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    animation: backTopRing 2.5s ease-in-out infinite;
+}
+#lux-back-top:hover {
+    transform: translateY(-4px) scale(1.12) !important;
+    box-shadow: 0 8px 28px rgba(201,168,76,0.6) !important;
+}
+@keyframes backTopRing {
+    0%   { box-shadow: 0 0 0 0 rgba(201,168,76,0.55); }
+    70%  { box-shadow: 0 0 0 14px rgba(201,168,76,0); }
+    100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+}
+#lux-back-top svg { pointer-events: none; }
+</style>
+
+{{-- SVG Wave divider before footer --}}
+<div class="footer-wave-wrap" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none"
+         style="height:70px;">
+        <path fill="#060402"
+              d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,70 L0,70 Z"/>
+    </svg>
+</div>
+
+{{-- Back To Top Button --}}
+<button id="lux-back-top" aria-label="Back to top" title="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+         fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
 <footer class="footer__section bg__logo">
     <div class="container-fluid">
         
@@ -338,6 +460,31 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
         $('.contact-btn').click(function() {
             $('.show-contact-box').toggle();
         });
+
+        // Back-to-Top visibility
+        const backTopBtn = document.getElementById('lux-back-top');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) {
+                backTopBtn.classList.add('show');
+            } else {
+                backTopBtn.classList.remove('show');
+            }
+        }, { passive: true });
+
+        backTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Footer widget scroll-reveal
+        const _footerObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('footer-visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.footer__widget').forEach(el => _footerObs.observe(el));
     });
 </script>
 

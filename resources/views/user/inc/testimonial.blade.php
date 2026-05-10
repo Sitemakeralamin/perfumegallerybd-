@@ -1,3 +1,95 @@
+<style>
+/* ===== DARK LUXURY TESTIMONIAL ===== */
+.testimonial__section {
+    background: linear-gradient(180deg, #100d06 0%, #080604 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+/* Ambient glow background */
+.testimonial__section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Testimonial cards: glassmorphism */
+.testimonial__items {
+    background: rgba(20,15,5,0.72) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(201,168,76,0.15) !important;
+    border-radius: 16px !important;
+    padding: 32px 24px !important;
+    margin: 8px !important;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+.testimonial__items::before {
+    content: '"';
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(201,168,76,0.12);
+    font-style: italic;
+    pointer-events: none;
+}
+.testimonial__items:hover {
+    border-color: rgba(201,168,76,0.45) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.08) !important;
+    transform: translateY(-5px) !important;
+}
+
+/* Avatar ring */
+.testimonial__items--thumbnail__img {
+    border: 2px solid rgba(201,168,76,0.4) !important;
+    box-shadow: 0 0 18px rgba(201,168,76,0.25) !important;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+.testimonial__items:hover .testimonial__items--thumbnail__img {
+    border-color: rgba(201,168,76,0.8) !important;
+    box-shadow: 0 0 28px rgba(201,168,76,0.45) !important;
+}
+
+/* Name & subtitle */
+.testimonial__items--title {
+    color: #e8d8b0 !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-weight: 700 !important;
+    margin-top: 14px !important;
+}
+.testimonial__items--subtitle {
+    color: rgba(201,168,76,0.75) !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+}
+.testimonial__items--desc {
+    color: rgba(232,216,176,0.65) !important;
+    font-style: italic !important;
+    line-height: 1.7 !important;
+}
+
+/* Gold stars */
+.rating__list--icon { color: #c9a84c !important; }
+.rating__list--icon svg path { fill: #c9a84c !important; }
+
+/* Section heading */
+.testimonial__section .section__heading--maintitle {
+    color: #e8d8b0 !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
+}
+</style>
+
 <section class="testimonial__section section--padding pt-0">
     <div class="container-fluid">
         <div class="section__heading text-center mb-40">

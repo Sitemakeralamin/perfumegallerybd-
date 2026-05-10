@@ -2,35 +2,168 @@
 $featured_categories = featured_categories();
 @endphp
 <style>
-    .auth_user_icon {
+/* ===== LUXURY GOLD HEADER THEME ===== */
+:root {
+    --gold: #c9a227;
+    --gold-light: #f0d060;
+    --gold-dark: #9a7a0a;
+    --gold-glow: rgba(201, 162, 39, 0.38);
+    --luxury-black: #110d04;
+    --luxury-dark: #1c1509;
+}
+
+/* ---- Top Bar: Dark Luxury + Shimmer ---- */
+.header__topbar {
+    background: linear-gradient(90deg, var(--luxury-black) 0%, #2d2006 40%, #1a1208 70%, var(--luxury-black) 100%) !important;
+    background-size: 200% 100% !important;
+    animation: topbarShimmer 5s ease-in-out infinite !important;
+    border-bottom: 1px solid rgba(201,162,39,0.25) !important;
+}
+@keyframes topbarShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+}
+
+.header__shipping--text__link {
+    color: #e2cfa0 !important;
+    transition: color 0.3s ease, text-shadow 0.3s ease !important;
+}
+.header__shipping--text__link:hover {
+    color: var(--gold-light) !important;
+    text-shadow: 0 0 10px var(--gold-glow) !important;
+}
+.header__shipping--text__icon { opacity: 0.85; }
+
+/* Language switcher */
+.changeLang {
+    background: rgba(255,255,255,0.08) !important;
+    color: #e2cfa0 !important;
+    border: 1px solid rgba(201,162,39,0.2) !important;
+    border-radius: 6px !important;
+    transition: border-color 0.3s ease !important;
+}
+.changeLang:focus { border-color: var(--gold) !important; outline: none !important; }
+
+/* ---- Main Header: Glassmorphism Dark ---- */
+.main__header {
+    background: rgba(10,8,4,0.82) !important;
+    backdrop-filter: blur(22px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(201,168,76,0.18) !important;
+    transition: box-shadow 0.4s ease, background 0.4s ease, border-color 0.4s ease !important;
+}
+.main__header.is-sticky,
+.header__section.sticky .main__header {
+    background: rgba(6,5,2,0.92) !important;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 1px 0 rgba(201,168,76,0.25) !important;
+    border-bottom-color: rgba(201,168,76,0.35) !important;
+}
+
+/* ---- Logo: Glow on Hover ---- */
+.main__logo--img {
+    transition: filter 0.4s ease, transform 0.4s ease !important;
+}
+.main__logo--link:hover .main__logo--img {
+    filter: drop-shadow(0 0 14px rgba(201,162,39,0.45)) !important;
+    transform: scale(1.04) !important;
+}
+
+/* ---- Search Bar: Gold Focus ---- */
+.auth_user_icon {
     padding: 0px 5px 0px 10px;
     margin: 0px 5px 0px 5px;
-    }
+}
+.search-bar {
+    flex: 1;
+    margin: 0 20px;
+    position: relative;
+}
+.search-bar input {
+    width: 100%;
+    padding: 8px 15px;
+    border-radius: 25px;
+    border: 1.5px solid rgba(201,162,39,0.2);
+    outline: none;
+    background: #faf8f3;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, width 0.35s ease;
+}
+.search-bar input:focus {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 3px rgba(201,162,39,0.15) !important;
+}
+.search-bar button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--gold-dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.search-bar button:hover {
+    color: var(--gold) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+}
 
-    .search-bar {
-        flex: 1;
-        margin: 0 20px;
-        position: relative;
-    }
-    .search-bar input {
-        width: 100%;
-        padding: 8px 15px;
-        border-radius: 25px;
-        border: none;
-        outline: none;
-    }
-    .search-bar button {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: transparent;
-        border: none;
-        color: var(--logo-color);
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
+/* ---- Cart / Wishlist Badge: Gold Pulse ---- */
+@keyframes goldBadgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,39,0.55); transform: scale(1); }
+    50%       { box-shadow: 0 0 0 7px rgba(201,162,39,0);  transform: scale(1.18); }
+}
+.items__count {
+    animation: goldBadgePulse 2.2s ease-in-out infinite !important;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+    border: 1px solid var(--gold-light) !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+}
 
+/* ---- Header Account Icons: Gold Hover ---- */
+.header__account--btn {
+    color: #e2cfa0 !important;
+    transition: color 0.3s ease, transform 0.3s ease !important;
+}
+.header__account--btn:hover {
+    color: var(--gold) !important;
+    transform: translateY(-2px) !important;
+}
+/* Nav text color on dark bg */
+.main__logo--title { margin: 0; }
+.header__account--btn__text { color: #e2cfa0 !important; }
+
+/* ---- Dropdown Submenu: Gold Accent ---- */
+.header__sub--menu {
+    border-top: 3px solid var(--gold) !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12) !important;
+    animation: dropFadeIn 0.25s ease forwards !important;
+}
+@keyframes dropFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.header__sub--menu__link {
+    transition: color 0.25s ease, padding-left 0.25s ease !important;
+}
+.header__sub--menu__link:hover {
+    color: var(--gold-dark) !important;
+    padding-left: 8px !important;
+}
+
+/* ---- Mobile Sticky Toolbar ---- */
+.offcanvas__stikcy--toolbar {
+    border-top: 2px solid rgba(201,162,39,0.18) !important;
+}
+.offcanvas__stikcy--toolbar__btn {
+    transition: color 0.3s ease, transform 0.3s ease !important;
+}
+.offcanvas__stikcy--toolbar__btn:hover,
+.offcanvas__stikcy--toolbar__btn:active {
+    color: var(--gold) !important;
+    transform: translateY(-3px) !important;
+}
 </style>
 <header class="header__section"> {{-- Start Topbar --}}
     <div class="header__topbar d-sm-2-none">
@@ -201,15 +334,60 @@ $featured_categories = featured_categories();
         </div>
     </div>
 <style>
-/* .header__search--button{
-background-color:#06693B!important;
-} */
-.header__menu--link{
-color:black!important;
-
+/* ---- Bottom Nav: Gold Underline Slide Animation ---- */
+.header__menu--link,
+.sticky_menu_link {
+    color: #e8d8b0 !important;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 4px !important;
+    transition: color 0.3s ease !important;
 }
-.sticky_menu_link{
-color:black !important;
+.header__menu--link::after,
+.sticky_menu_link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+    border-radius: 2px;
+    transition: left 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 6px var(--gold-glow);
+}
+.header__menu--link:hover::after,
+.sticky_menu_link:hover::after {
+    left: 0;
+}
+.header__menu--link:hover,
+.sticky_menu_link:hover {
+    color: var(--gold-dark) !important;
+}
+
+/* ---- Header Bottom Bar: Glassmorphism Dark ---- */
+.header__bottom {
+    background: rgba(13,10,4,0.88) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+    border-top: 1px solid rgba(201,168,76,0.12) !important;
+    border-bottom: 1px solid rgba(201,168,76,0.12) !important;
+    transition: border-color 0.3s ease !important;
+}
+.header__bottom:hover {
+    border-top-color: rgba(201,168,76,0.28) !important;
+    border-bottom-color: rgba(201,168,76,0.28) !important;
+}
+.header__sub--menu {
+    background: rgba(15,12,5,0.95) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+/* ---- Discount/promo text glow ---- */
+.header__discount--text small {
+    color: var(--gold-dark) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
 }
 </style>
     {{-- Category Menu None Sticky --}}
