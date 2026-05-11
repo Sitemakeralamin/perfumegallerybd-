@@ -170,18 +170,23 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
     transform: scale(1.2) !important;
 }
 
-/* ---- Footer Scroll Reveal ---- */
+/* ---- Footer Scroll Reveal: 3D Zoom from Front ---- */
 .footer__widget {
     opacity: 0;
-    transform: translateY(35px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: perspective(700px) scale(0.80) translateZ(-60px);
+    transform-origin: center bottom;
+    transition: opacity 0.8s cubic-bezier(0.34, 1.15, 0.64, 1),
+                transform 0.8s cubic-bezier(0.34, 1.15, 0.64, 1);
+    will-change: transform, opacity;
 }
-.footer__widget.footer-visible { opacity: 1; transform: translateY(0); }
+.footer__widget.footer-visible {
+    opacity: 1;
+    transform: perspective(700px) scale(1) translateZ(0);
+}
 .footer__widget:nth-child(1) { transition-delay: 0.05s; }
-.footer__widget:nth-child(2) { transition-delay: 0.15s; }
-.footer__widget:nth-child(3) { transition-delay: 0.25s; }
-.footer__widget:nth-child(4) { transition-delay: 0.35s; }
+.footer__widget:nth-child(2) { transition-delay: 0.18s; }
+.footer__widget:nth-child(3) { transition-delay: 0.31s; }
+.footer__widget:nth-child(4) { transition-delay: 0.44s; }
 
 /* ---- Back To Top Button ---- */
 #lux-back-top {
@@ -413,16 +418,13 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
             
         </div>
         {{-- Bottom Footer --}}
-        <div class="footer__bottom d-flex justify-content-between align-items-end row">
-            <div class="col-md-4">
+        <div class="footer__bottom d-flex justify-content-center align-items-center row">
+            <div class="col-md-12 text-center">
                 <p class="copyright__content text-ofwhite m-0">
-                    <a class="copyright__content--link text-white" style="text-decoration:none;"> &copy; 2024. {{env('APP_NAME')}}. All rights reserved.
-
-                </a></p> 
+                    <a class="copyright__content--link text-white" style="text-decoration:none;"> &copy; 2026. {{env('APP_NAME')}}. All rights reserved.
+                </a></p>
             </div>
-            <div class="col-md-8 text-center">
-                <img class="display-block text-end" src="{{asset('images/payment-gateway.png')}}" alt="visa-card">
-            </div>
+            
         </div>
     </div>
 </footer>

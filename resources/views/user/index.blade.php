@@ -168,14 +168,19 @@ body {
     letter-spacing: 0.5px !important;
 }
 
-/* ---- Scroll Reveal ---- */
+/* ---- Scroll Reveal: 3D Zoom-In from Front ---- */
 .reveal {
     opacity: 0;
-    transform: translateY(45px);
-    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: perspective(900px) scale(0.78) translateZ(-80px) translateY(30px);
+    transform-origin: center center;
+    transition: opacity 0.9s cubic-bezier(0.34, 1.15, 0.64, 1),
+                transform 0.9s cubic-bezier(0.34, 1.15, 0.64, 1);
+    will-change: transform, opacity;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.visible {
+    opacity: 1;
+    transform: perspective(900px) scale(1) translateZ(0) translateY(0);
+}
 
 /* ---- Four Banner Section: Dark overlay ---- */
 .banner__section,
@@ -267,7 +272,9 @@ body {
 </div>
 
 {{-- <div id="flash_sale_offer"></div> --}}
-@include('user.partials.home_page_four_banner')
+<div class="reveal">
+    @include('user.partials.home_page_four_banner')
+</div>
 
 {{-- Trending Now --}}
 <div id="trending_now" class="reveal">
@@ -279,11 +286,15 @@ body {
 </div>
 
 <!-- Start testimonial section -->
-@include('user.inc.testimonial')
+<div class="reveal">
+    @include('user.inc.testimonial')
+</div>
 <!-- End testimonial section -->
 
 @if($blogs->isNotEmpty())
-    @include('user.inc.blog')
+    <div class="reveal">
+        @include('user.inc.blog')
+    </div>
 @endif
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
