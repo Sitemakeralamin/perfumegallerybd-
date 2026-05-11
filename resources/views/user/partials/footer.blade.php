@@ -279,7 +279,7 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
                             </div>
                         @endfor
                     </div> --}}
-                    <small class="text-white">Welcome to Pizeon Luxury Linens! Discover our collection of imported luxurious and cozy bedding, featuring plush sheets, elegant linens, and soft throws. Our carefully crafted pieces will transform your home into a stylish and comfortable haven.</small>
+                    <small class="text-white">Welcome to perfumegallerybd Luxury Linens! Discover our collection of imported luxurious and cozy bedding, featuring plush sheets, elegant linens, and soft throws. Our carefully crafted pieces will transform your home into a stylish and comfortable haven.</small>
                 </div>
                 <div class="footer__social" style="margin-top:20px;">
                     <ul class="social__shear d-flex">
@@ -339,7 +339,7 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
                     <ul class="footer__widget--menu footer__widget--inner">
                         <h6 class="text-ofwhite">{{ __('Customer Service') }} </h6>
                         <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="https://wa.me/01841978901" target="_blank">{{ __('WhatsApp') }}</a></li>
-                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="https://www.facebook.com/pizeonluxurylinens" target="_blank">{{ __('GMB Profile') }}</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="https://www.facebook.com/perfumegallerybdluxurylinens" target="_blank">{{ __('GMB Profile') }}</a></li>
                         <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="https://maps.app.goo.gl/SxKokkVyZs4SiJAD6" target="_blank">{{ __('Location ') }}</a></li>
                         {{-- @foreach($pages as $page)
                         <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="{{route('other.page', ['id'=>$page->id, 'title'=>Str::slug($page->name)] )}}">
@@ -392,12 +392,12 @@ $(document).ready(function(){var t={delay:125,overlay:$(".fb-overlay"),widget:$(
                         </button>
                     </h2>
 
-                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" rget="_blank" href="https://www.facebook.com/pizeonluxurylinens"> <i class="fa-brands fa-square-facebook fs-3"></i> <span>{{ __('Facebook') }}</span></a></li>
-                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://www.instagram.com/pizeonluxurylinens/"><i class="fa-brands fa-square-instagram fs-3"></i> <span>{{ __('Instagram') }}</span></a></li>
-                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://www.pinterest.com/pizeonl/"><i class="fa-brands fa-square-pinterest fs-3"></i> <span>{{ __('Pinterest') }}</span></a></li>
-                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://m.youtube.com/@pizeonluxurylinens1"><i class="fa-brands fa-youtube fs-3"></i> <span>{{ __('YouTube') }}</span></a></li>
-                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://www.linkedin.com/company/pizeon-luxury-linens/"><i class="fa-brands fa-linkedin fs-3"></i> <span>{{ __('Linkedin') }}</span></a></li>
-                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href=""><i class="fa-solid fa-envelope fs-3"></i> <span>info.pizeon@gmail.com</span></a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" rget="_blank" href="https://www.facebook.com/perfumegallerybdluxurylinens"> <i class="fa-brands fa-square-facebook fs-3"></i> <span>{{ __('Facebook') }}</span></a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://www.instagram.com/perfumegallerybdluxurylinens/"><i class="fa-brands fa-square-instagram fs-3"></i> <span>{{ __('Instagram') }}</span></a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://www.pinterest.com/perfumegallerybdl/"><i class="fa-brands fa-square-pinterest fs-3"></i> <span>{{ __('Pinterest') }}</span></a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://m.youtube.com/@perfumegallerybdluxurylinens1"><i class="fa-brands fa-youtube fs-3"></i> <span>{{ __('YouTube') }}</span></a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href="https://www.linkedin.com/company/perfumegallerybd-luxury-linens/"><i class="fa-brands fa-linkedin fs-3"></i> <span>{{ __('Linkedin') }}</span></a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text d-flex align-items-center gap-3" target="_blank" href=""><i class="fa-solid fa-envelope fs-3"></i> <span>info.perfumegallerybd@gmail.com</span></a></li>
                     
                     {{-- <ul class="footer__widget--menu footer__widget--inner">
                         <li class="footer__widget--menu__list">

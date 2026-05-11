@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `marketle_pizeon`
+-- Database: `marketle_perfumegallerybd`
 --
 
 -- --------------------------------------------------------
@@ -1147,7 +1147,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `name`, `header_logo`, `footer_logo`, `favicon`, `email`, `phone`, `address`, `tiny`, `google_map_link`, `google_map_embed`, `google_tag_manager_head`, `google_tag_manager_body`, `facebook`, `instagram`, `twitter`, `youtube`, `linkedin`, `custom_css`, `custom_js`, `minimum_point`, `equivalent_point`, `meta_title`, `meta_description`, `meta_tag`, `meta_keywords`, `meta_image`, `created_at`, `updated_at`) VALUES
-(1, 'Pizeon', '1736325689228003217.png', '1736322645723382095.png', 'favicon_17363226451158741880.png', 'info.pizeon@gmail.com', '+8801841978901', 'Uttara Square Shopping Mall, Shop No. 317, 3rd Floor, Sonargaon Janapath Road, Uttara Sector 13, Dhaka-1230, Bangladesh.', '01623 771241', NULL, NULL, NULL, NULL, 'https://www.facebook.com/pizeonluxurylinens', 'https://www.instagram.com/pizeonluxurylinens', 'https://www.pinterest.com/pizeonl/', 'https://m.youtube.com/@pizeonluxurylinens', 'https://www.pinterest.com/pizeonl/', NULL, NULL, '0', '0', 'Pizeon', 'Welcome to Pizeon Luxury Linens! Discover our collection of imported luxurious and cozy bedding, featuring plush sheets, elegant linens, and soft throws. Our carefully crafted pieces will transform your home into a stylish and comfortable haven.', 'Pizeon', 'Pizeon', NULL, NULL, '2025-01-23 06:52:23');
+(1, 'perfumegallerybd', '1736325689228003217.png', '1736322645723382095.png', 'favicon_17363226451158741880.png', 'info.perfumegallerybd@gmail.com', '+8801841978901', 'Uttara Square Shopping Mall, Shop No. 317, 3rd Floor, Sonargaon Janapath Road, Uttara Sector 13, Dhaka-1230, Bangladesh.', '01623 771241', NULL, NULL, NULL, NULL, 'https://www.facebook.com/perfumegallerybdluxurylinens', 'https://www.instagram.com/perfumegallerybdluxurylinens', 'https://www.pinterest.com/perfumegallerybdl/', 'https://m.youtube.com/@perfumegallerybdluxurylinens', 'https://www.pinterest.com/perfumegallerybdl/', NULL, NULL, '0', '0', 'perfumegallerybd', 'Welcome to perfumegallerybd Luxury Linens! Discover our collection of imported luxurious and cozy bedding, featuring plush sheets, elegant linens, and soft throws. Our carefully crafted pieces will transform your home into a stylish and comfortable haven.', 'perfumegallerybd', 'perfumegallerybd', NULL, NULL, '2025-01-23 06:52:23');
 
 -- --------------------------------------------------------
 
@@ -1289,7 +1289,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `phone`, `type`, `districts`, `city`, `address`, `image`, `is_active`, `referral_id`, `email_verified_at`, `verification_code`, `is_phone_verified`, `wallet_amount`, `used_wallet_amount`, `wallet_point`, `used_wallet_point`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, 'pizeon@gmail.com', '01766996853', '1', NULL, NULL, NULL, NULL, 1, NULL, '2025-01-21 05:30:35', '165819', 1, '0', '0', '0', '0', '$2y$10$m9DM9TBF1qqSE3pPCd0qT.ARSa.pkb/4uebMrVGqbUjhoYbZYXNV6', NULL, '2025-01-21 05:30:35', '2025-01-21 05:30:35'),
+(1, 'Admin', NULL, 'perfumegallerybd@gmail.com', '01766996853', '1', NULL, NULL, NULL, NULL, 1, NULL, '2025-01-21 05:30:35', '165819', 1, '0', '0', '0', '0', '$2y$10$m9DM9TBF1qqSE3pPCd0qT.ARSa.pkb/4uebMrVGqbUjhoYbZYXNV6', NULL, '2025-01-21 05:30:35', '2025-01-21 05:30:35'),
 (11, 'A Hoque', NULL, 'akram@gmail.com', '01590090375', '1', NULL, 'Chittagong', NULL, NULL, 1, NULL, NULL, NULL, 0, '0', '0', '0', '0', '$2y$10$cIWqgJAZsDLJajYaqC2WfuD1thMIrCA/4Bq0y2RXKP/3xdBt4bpxG', NULL, '2025-01-24 19:11:10', '2025-01-24 19:11:10');
 
 -- --------------------------------------------------------
