@@ -87,12 +87,18 @@ class PageController extends Controller
         $min_price = ProductStocks::min('price');
         $max_price = ProductStocks::max('price');
         $request_category = $request->category_id;
-        $request_brand = $request->brand_id;
+        $request_brand    = $request->brand_id;
+        $scent_search     = $request->search; // from popup preference redirect
 
         $categories = Category::where('parent_id', 0)->orderBy('position', 'ASC')->get();
-        $brands = Brand::orderBy('position', 'ASC')->get();
+        $brands     = Brand::orderBy('position', 'ASC')->get();
 
-        return view('user.pages.shop', compact('categories', 'brands', 'request_category', 'request_brand', 'min_price', 'max_price'));
+        return view('user.pages.shop', compact(
+            'categories', 'brands',
+            'request_category', 'request_brand',
+            'min_price', 'max_price',
+            'scent_search'
+        ));
     }
 
     public function wholesale_products(){
@@ -119,11 +125,24 @@ class PageController extends Controller
 
     public function shop_products_data(Request $request) {
         // $lastID = $request->lastID;
-        $brand_array = $request->brand_array;
-        $category_id = $request->category_id;
+        $brand_array    = $request->brand_array;
+        $category_id    = $request->category_id;
+        $scent_keyword  = $request->scent_keyword; // from popup preference
 
         $updatedlastID = 0;
         $output = '';
+
+        /* ── Helper: apply scent keyword filter to any query ── */
+        $applyKeyword = function ($query) use ($scent_keyword) {
+            if (!empty($scent_keyword)) {
+                $kw = '%' . $scent_keyword . '%';
+                $query->where(function ($q) use ($kw) {
+                    $q->where('products.title', 'LIKE', $kw)
+                      ->orWhere('products.description', 'LIKE', $kw);
+                });
+            }
+            return $query;
+        };
 
         if(empty($category_id) && empty($brand_array)) {// nothing is active
             $query = Product::where('is_active', 1)->with('stock_product');
@@ -132,6 +151,7 @@ class PageController extends Controller
                             $q->whereBetween('price', [$request->min_price, $request->max_price]);
                         });
                     }
+            $applyKeyword($query);
             $products = $query->orderBy('id', 'DESC')->get(['id', 'discount_type', 'discount_amount', 'type', 'title', 'bn_title', 'thumbnail_image']);
             
         }else if(!empty($category_id) && empty($brand_info)) { //only category is active.
@@ -152,13 +172,14 @@ class PageController extends Controller
                 }
             }
 
-            $query = Product::join('product_with_categories', 'product_with_categories.product_id', '=', 'products.id')->with('stock_product'); 
+            $query = Product::join('product_with_categories', 'product_with_categories.product_id', '=', 'products.id')->with('stock_product');
 
                     if ($request->has('min_price') && $request->has('max_price') && $request->max_price != 0) {
                         $query->whereHas('stock_product', function ($q) use ($request) {
                             $q->whereBetween('price', [$request->min_price, $request->max_price]);
                         });
                     }
+            $applyKeyword($query);
             $products = $query->where('products.is_active', 1)
                         ->whereIn('product_with_categories.category_id', $categories_id)
                         ->orderBy('product_with_categories.id', 'DESC')
@@ -187,6 +208,7 @@ class PageController extends Controller
                             $q->whereBetween('price', [$request->min_price, $request->max_price]);
                         });
                     }
+            $applyKeyword($query);
             $products = $query->whereIn('category_id', $categories_id)->whereIn('brand_id', [$brand_array])->orderBy('id', 'DESC')->limit(20)->get();
             
         }else if(empty($category_id) && !empty($brand_array)) { //Brand is active.
@@ -196,6 +218,7 @@ class PageController extends Controller
                         $q->whereBetween('price', [$request->min_price, $request->max_price]);
                     });
             }
+            $applyKeyword($query);
             $products = $query->whereIn('brand_id', [$brand_array])->orderBy('id', 'DESC')->get();
         }
 
@@ -1690,7 +1713,30 @@ class PageController extends Controller
         return view('user.pages.blog_details', compact('blog_details'));
     }
 
+    /**
+     * Save the user's perfume scent preference.
+     * Called via AJAX from the Perfume Preference Popup.
+     * Persists to:
+     *   - PHP session (prevents re-showing popup in same session)
+     *   - users.scent_preference column (authenticated users only)
+     */
+    public function saveScentPreference(Request $request)
+    {
+        $preference = $request->input('preference');
 
+        // Mark popup as shown for this session
+        session(['scent_popup_shown' => true]);
+
+        // Persist to DB if user is logged in and sent a non-empty preference
+        if (Auth::check() && !empty($preference)) {
+            Auth::user()->update(['scent_preference' => $preference]);
+        }
+
+        return response()->json([
+            'success'    => true,
+            'preference' => $preference,
+        ]);
+    }
 
 
 }

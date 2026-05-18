@@ -15,6 +15,10 @@ Route::get('/invoice', function () {
 Route::get('lang/change', [App\Http\Controllers\PageController::class, 'change'])->name('changeLang');
 
 Route::get('/', [App\Http\Controllers\PageController::class, 'index'])->name('index');
+
+// Perfume Preference Popup — saves scent choice to session + DB
+Route::post('/save-scent-preference', [App\Http\Controllers\PageController::class, 'saveScentPreference'])->name('save.scent.preference');
+
 /* New Wholesale */
 Route::get('/wholesale-products', [App\Http\Controllers\PageController::class, 'wholesale_products'])->name('wholesale.products');
 Route::post('/wholesale-form-submit', [App\Http\Controllers\PageController::class, 'wholesaleFormSubmit'])->name('wholesale.form.submit');

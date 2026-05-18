@@ -8,14 +8,43 @@
 <form action="javascript:void(0)" id="filter_form">
     @csrf
     <input type="hidden" id="brand_array" name="brand_array">
-    {{-- <input type="hidden" id="lastID" name="lastID" value="1200"> --}}
     <input type="hidden" id="is_discount" name="is_discount" value="0">
     <input type="hidden" id="new_arrival" name="new_arrival" value="0">
     <input type="hidden" id="category_id" name="category_id" value="{{!is_null($request_category)? $request_category : 0}}">
-    {{-- <input type="hidden" id="load_more" name="" value="0"> --}}
     <input id="min_price" type="hidden" value="0" name="min_price" min="0">
     <input id="max_price" type="hidden" value="0" name="max_price" min="0">
+    {{-- Scent preference search (from popup redirect) --}}
+    <input type="hidden" id="scent_keyword" name="scent_keyword" value="{{ $scent_search ?? '' }}">
 </form>
+
+{{-- Scent preference notice banner --}}
+@if(!empty($scent_search))
+<div id="scentSearchBanner" style="
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(183,110,121,0.08));
+    border: 1px solid rgba(201,168,76,0.30);
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin: 16px 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+">
+    <span style="color:#e8d8b0; font-family:'Hind Siliguri',sans-serif; font-size:0.92rem;">
+        🌸 <strong style="color:#c9a84c;">আপনার পছন্দ অনুযায়ী</strong>
+        &ldquo;<em style="color:#f0d060;">{{ $scent_search }}</em>&rdquo; পণ্য দেখাচ্ছি
+    </span>
+    <button onclick="clearScentFilter()" style="
+        background:none; border:1px solid rgba(201,168,76,0.30); border-radius:8px;
+        color:rgba(232,216,176,0.55); padding:4px 12px; cursor:pointer; font-size:0.78rem;
+        font-family:'Hind Siliguri',sans-serif; transition:all .2s ease;
+    " onmouseover="this.style.color='#c9a84c';this.style.borderColor='rgba(201,168,76,0.6)'"
+       onmouseout="this.style.color='rgba(232,216,176,0.55)';this.style.borderColor='rgba(201,168,76,0.30)'">
+        ✕ ফিল্টার সরান
+    </button>
+</div>
+@endif
 
     <div class="offcanvas__filter--sidebar widget__area">
         <button type="button" class="offcanvas__filter--close m-2" data-offcanvas="">
@@ -309,6 +338,14 @@
         order_ready();
     }
 
+
+    /* Clear scent preference filter */
+    function clearScentFilter() {
+        $('#scent_keyword').val('');
+        var banner = document.getElementById('scentSearchBanner');
+        if (banner) banner.remove();
+        order_ready();
+    }
 
     function order_confirm() {
     // e.preventDefault();

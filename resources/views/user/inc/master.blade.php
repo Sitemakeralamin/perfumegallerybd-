@@ -510,6 +510,12 @@
 
   {{-- @include('user.partials.script') --}}
 @yield('scripts')
+
+{{-- ── Perfume Preference Popup (home page, once per session) ── --}}
+@if(Route::currentRouteName() === 'index' && !session('scent_popup_shown'))
+    @include('user.partials.perfume_preference_popup')
+@endif
+
 </body>
 
 </html>

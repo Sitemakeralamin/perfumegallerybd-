@@ -30,6 +30,7 @@ class User extends Authenticatable
         'address',
         'is_wholeseller',
         'password',
+        'scent_preference',
     ];
 
     /**
